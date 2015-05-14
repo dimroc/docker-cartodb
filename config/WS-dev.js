@@ -10,7 +10,7 @@ var config = {
     // Base URLs for the APIs
     //
     // See http://github.com/CartoDB/Windshaft-cartodb/wiki/Unified-Map-API
-    // 
+    //
     // Base url for the Templated Maps API
     // "/api/v1/map/named" is the new API,
     // "/tiles/template" is for compatibility with versions up to 1.6.x
@@ -32,7 +32,7 @@ var config = {
     // to be able to navigate the map without a reload ?
     // Defaults to 7200 (2 hours)
     ,mapConfigTTL: 7200
-    // idle socket timeout, in milliseconds 
+    // idle socket timeout, in milliseconds
     ,socket_timeout: 600000
     ,enable_cors: true
     ,cache_enabled: false
@@ -127,7 +127,7 @@ var config = {
         // DNS lookup
         host: '127.0.0.1',
         port: 8080,
-        // The "domain" part will be appended to 
+        // The "domain" part will be appended to
         // the cartodb username and passed to
         // SQL-API requests in the Host HTTP header
         domain: 'cartodb.localhost',
@@ -148,9 +148,26 @@ var config = {
         layergroupTtl: 86400 // the max-age for cache-control header in layergroup responses
     }
     // If useProfiler is true every response will be served with an
-    // X-Tiler-Profile header containing elapsed timing for various 
+    // X-Tiler-Profile header containing elapsed timing for various
     // steps taken for producing the response.
     ,useProfiler:true
+    // Settings for the health check available at /health
+    ,health: {
+      enabled: false,
+      username: 'localhost',
+      z: 0,
+      x: 0,
+      y: 0
+    }
+    ,disabled_file: 'pids/disabled'
+
+    // Use this as a feature flags enabling/disabling mechanism
+    ,enabledFeatures: {
+        // whether it should intercept tile render errors an act based on them, enabled by default.
+        onTileErrorStrategy: true,
+        // whether the affected tables for a given SQL must query directly postgresql or use the SQL API
+        cdbQueryTablesFromPostgres: true
+    }
 };
 
 module.exports = config;

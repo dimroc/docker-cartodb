@@ -34,7 +34,7 @@ RUN apt-get install -y -q build-essential checkinstall unp zip libgeos-c1 \
       libc6-dev ncurses-dev automake libtool bison subversion \
       pkg-config libpq5 libpq-dev libcurl4-gnutls-dev libffi-dev \
       libgdbm-dev gnupg libreadline6-dev libcairo2-dev libjpeg8-dev \
-      libpango1.0-dev libgif-dev
+      libpango1.0-dev libgif-dev tmux vim ack-grep
 
 # Setting PostgreSQL
 RUN sed -i 's/\(peer\|md5\)/trust/' /etc/postgresql/9.3/main/pg_hba.conf
@@ -76,7 +76,8 @@ RUN curl -L https://get.rvm.io | bash -s stable --ruby
 RUN echo 'source /usr/local/rvm/scripts/rvm' >> /etc/bash.bashrc
 RUN /bin/bash -l -c rvm requirements
 ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-RUN /bin/bash -l -c 'rvm install 1.9.3-p547 --patch railsexpress'
+RUN /bin/bash -l -c 'rvm install 1.9.3-p547'
+#RUN /bin/bash -l -c 'rvm install 1.9.3-p547 --patch railsexpress'
 RUN /bin/bash -l -c 'rvm use 1.9.3-p547 --default'
 RUN /bin/bash -l -c 'gem install bundle archive-tar-minitar'
 
@@ -106,5 +107,6 @@ EXPOSE 3000 8080 8181
 
 ADD ./startup.sh /opt/startup.sh
 
-CMD ["/bin/bash", "/opt/startup.sh"]
+#CMD ["/bin/bash", "/opt/startup.sh"]
+CMD ["/bin/bash"]
 

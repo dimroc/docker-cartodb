@@ -338,6 +338,7 @@ defaults: &defaults
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
 
 development:
+  http_port: 3000
   <<: *defaults
   varnish_management:
     critical: false
@@ -356,7 +357,7 @@ test:
     port: 6335
   enforce_non_empty_layer_css: false
   api_requests_es_service:
-    url: "http://api-calls-service.cartodb.localhost/search"
+    url: "http://api-calls-service.cartodb.localhost:3000/search"
     body: ""
 
 staging:
