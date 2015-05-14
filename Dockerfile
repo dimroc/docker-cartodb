@@ -107,6 +107,12 @@ EXPOSE 3000 8080 8181
 
 ADD ./startup.sh /opt/startup.sh
 
+# Install vim configuration for development
+RUN mkdir /root/.vim
+RUN git clone git://github.com/dimroc/dot_vim.git /root/.vim
+RUN git clone https://github.com/gmarik/Vundle.vim.git /root/.vim/bundle/vundle
+RUN /bin/bash -l -c 'vim +PluginInstall +qall'
+
 #CMD ["/bin/bash", "/opt/startup.sh"]
 CMD ["/bin/bash"]
 
