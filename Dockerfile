@@ -85,7 +85,7 @@ RUN /bin/bash -l -c 'gem install bundle archive-tar-minitar'
 RUN /bin/bash -l -c 'gem install bundler --no-doc --no-ri'
 
 # Install CartoDB (with the bug correction on bundle install)
-RUN git clone git://github.com/CartoDB/cartodb.git && \
+RUN git clone https://github.com/dimroc/cartodb.git && \
       cd cartodb && /bin/bash -l -c 'bundle install' || \
       /bin/bash -l -c "cd $(/bin/bash -l -c 'gem contents \
             debugger-ruby_core_source' | grep CHANGELOG | sed -e \
